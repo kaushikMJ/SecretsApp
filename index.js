@@ -27,7 +27,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.static("public"))
+
+//app.use(express.static("public"))
+
+// Require static assets from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set 'views' directory for any views 
+// being rendered res.render()
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
 
 mongoose.set('strictQuery', true);
